@@ -1,0 +1,400 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Clein Neurology in Mesa, AZ. Dr. Andrea Clein diagnoses and treats nerve, muscle, brain and spine conditions, with EMG and nerve conduction testing in the office.">
+<title>Clein Neurology</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&family=Public+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: a clinical chart — left-aligned editorial columns, a nerve-conduction trace as the signature graphic, quiet bands between sections */
+:root {
+  --bg: #f3f5f7;
+  --surface: #ffffff;
+  --ink: #17233a;
+  --muted: #56627a;
+  --line: #d9dfe7;
+  --accent: #1d6f66;
+  --accent-soft: #e2efec;
+  --signal: #c9861a;
+  --band: #17233a;
+  --band-fg: #e9eef5;
+  --band-muted: #a8b4c6;
+  --f-display: "Newsreader", Georgia, "Times New Roman", serif;
+  --f-body: "Public Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --f-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  --s-1: 0.875rem; --s0: 1rem; --s1: 1.25rem; --s2: 1.6rem; --s3: 2.2rem; --s4: clamp(2.4rem, 5vw, 3.6rem);
+  --wrap: 1120px;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0f1522; --surface: #161e2e; --ink: #e6ebf3; --muted: #9aa6ba; --line: #283246;
+    --accent: #5cc0b2; --accent-soft: #1a2f33; --signal: #e3a542;
+    --band: #0a0f19; --band-fg: #e6ebf3; --band-muted: #93a0b5;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0f1522; --surface: #161e2e; --ink: #e6ebf3; --muted: #9aa6ba; --line: #283246;
+  --accent: #5cc0b2; --accent-soft: #1a2f33; --signal: #e3a542;
+  --band: #0a0f19; --band-fg: #e6ebf3; --band-muted: #93a0b5;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--ink); font-family: var(--f-body); font-size: var(--s0); line-height: 1.6; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--surface); }
+h1, h2, h3 { font-family: var(--f-display); font-weight: 500; line-height: 1.15; text-wrap: balance; margin: 0; }
+p { margin: 0; }
+a { color: var(--accent); }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
+.wrap { max-width: var(--wrap); margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+.eyebrow { font-family: var(--f-mono); font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); }
+.lede { color: var(--muted); max-width: 60ch; font-size: 1.075rem; }
+
+/* Header */
+header.site { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 9; background: var(--surface); border-bottom: 1px solid var(--line); }
+header.site .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-block: 14px; flex-wrap: wrap; }
+.brand { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--ink); }
+.brand svg { flex: none; }
+.brand b { font-family: var(--f-display); font-weight: 600; font-size: 1.3rem; letter-spacing: -0.01em; }
+.brand small { display: block; font-family: var(--f-mono); font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+nav.main { display: flex; gap: 22px; align-items: center; flex-wrap: wrap; }
+nav.main a { color: var(--ink); text-decoration: none; font-size: var(--s-1); font-weight: 500; }
+nav.main a:hover { color: var(--accent); }
+.btn { display: inline-block; background: var(--accent); color: var(--surface); text-decoration: none; padding: 10px 18px; border-radius: 6px; font-weight: 600; font-size: var(--s-1); border: 0; cursor: pointer; font-family: var(--f-body); }
+.btn:hover { filter: brightness(1.08); }
+.btn.ghost { background: transparent; color: var(--accent); box-shadow: inset 0 0 0 1.5px var(--accent); }
+@media (max-width: 760px) { nav.main a:not(.btn) { display: none; } }
+
+/* Hero */
+.hero .wrap { display: grid; grid-template-columns: 1.05fr 1fr; gap: 48px; align-items: center; padding-block: 64px 56px; }
+.hero h1 { font-size: var(--s4); letter-spacing: -0.015em; margin-block: 14px 18px; }
+.hero h1 em { font-style: italic; color: var(--accent); }
+.hero .ctas { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 28px; }
+.hero .note { margin-top: 18px; font-size: var(--s-1); color: var(--muted); }
+.trace { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 18px 18px 14px; min-width: 0; }
+.trace-head { display: flex; justify-content: space-between; font-family: var(--f-mono); font-size: 0.72rem; color: var(--muted); letter-spacing: 0.04em; margin-bottom: 8px; gap: 12px; flex-wrap: wrap; }
+.trace svg { width: 100%; height: auto; display: block; }
+.trace .grid line { stroke: var(--line); stroke-width: 1; }
+.trace .wave { fill: none; stroke: var(--accent); stroke-width: 2.2; stroke-linejoin: round; stroke-dasharray: 900; stroke-dashoffset: 0; }
+@media (prefers-reduced-motion: no-preference) { .trace .wave { animation: draw 2.2s ease-out both; } }
+@keyframes draw { from { stroke-dashoffset: 900; } to { stroke-dashoffset: 0; } }
+.trace .mark { stroke: var(--signal); stroke-width: 1.5; stroke-dasharray: 3 3; }
+.trace text { font-family: var(--f-mono); font-size: 11px; fill: var(--muted); }
+.trace text.sig { fill: var(--signal); font-weight: 500; }
+.readout { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 12px; border-top: 1px solid var(--line); padding-top: 12px; }
+.readout div { font-family: var(--f-mono); font-size: 0.72rem; color: var(--muted); }
+.readout b { display: block; font-size: 1.05rem; color: var(--ink); font-weight: 500; font-variant-numeric: tabular-nums; }
+@media (max-width: 860px) { .hero .wrap { grid-template-columns: 1fr; padding-block: 40px; gap: 32px; } }
+
+/* Sections */
+section.block .wrap { padding-block: 72px; }
+.sec-head { display: grid; grid-template-columns: 1fr 1.3fr; gap: 32px; align-items: end; margin-bottom: 40px; }
+.sec-head h2 { font-size: var(--s3); margin-top: 8px; }
+@media (max-width: 760px) { .sec-head { grid-template-columns: 1fr; gap: 12px; } section.block .wrap { padding-block: 52px; } }
+
+.services { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--line); }
+.svc { padding: 26px 24px 28px 0; border-bottom: 1px solid var(--line); display: grid; gap: 8px; align-content: start; min-width: 0; }
+.svc:not(:nth-child(3n+1)) { padding-left: 24px; border-left: 1px solid var(--line); }
+.svc .code { font-family: var(--f-mono); font-size: 0.7rem; color: var(--signal); letter-spacing: 0.08em; }
+.svc h3 { font-size: var(--s1); }
+.svc p { color: var(--muted); font-size: 0.95rem; }
+@media (max-width: 860px) {
+  .services { grid-template-columns: 1fr 1fr; }
+  .svc:not(:nth-child(3n+1)) { padding-left: 0; border-left: 0; }
+  .svc:nth-child(even) { padding-left: 24px; border-left: 1px solid var(--line); }
+}
+@media (max-width: 560px) { .services { grid-template-columns: 1fr; } .svc:nth-child(even) { padding-left: 0; border-left: 0; } }
+
+/* Conditions */
+.alt { background: var(--surface); border-block: 1px solid var(--line); }
+.cond-cols { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
+.cond-cols h3 { font-family: var(--f-mono); font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); font-weight: 500; padding-bottom: 10px; border-bottom: 1px solid var(--line); margin-bottom: 12px; }
+.cond-cols ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 8px; }
+.cond-cols li { font-family: var(--f-display); font-size: 1.15rem; }
+@media (max-width: 760px) { .cond-cols { grid-template-columns: 1fr; gap: 28px; } }
+
+/* EMG steps (a real sequence) */
+.steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; counter-reset: s; }
+.step { padding: 0 24px 0 0; position: relative; min-width: 0; }
+.step .n { font-family: var(--f-mono); font-size: 0.75rem; color: var(--accent); display: flex; align-items: center; gap: 10px; margin-bottom: 14px; }
+.step .n::after { content: ""; flex: 1; height: 1px; background: var(--line); }
+.step h3 { font-size: var(--s1); margin-bottom: 8px; }
+.step p { color: var(--muted); font-size: 0.95rem; }
+.prep { margin-top: 40px; display: flex; gap: 14px 28px; flex-wrap: wrap; background: var(--accent-soft); border-radius: 8px; padding: 18px 22px; font-size: 0.95rem; }
+.prep strong { color: var(--accent); }
+@media (max-width: 860px) { .steps { grid-template-columns: 1fr 1fr; row-gap: 32px; } }
+@media (max-width: 520px) { .steps { grid-template-columns: 1fr; } }
+
+/* Physicians */
+.docs { display: grid; grid-template-columns: 1fr; gap: 24px; max-width: 640px; }
+.doc { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 24px; display: grid; gap: 10px; align-content: start; }
+.mono { width: 56px; height: 56px; border-radius: 50%; background: var(--accent-soft); color: var(--accent); display: grid; place-items: center; font-family: var(--f-display); font-size: 1.35rem; font-weight: 600; }
+.doc h3 { font-size: 1.3rem; }
+.doc .role { font-family: var(--f-mono); font-size: 0.72rem; color: var(--muted); letter-spacing: 0.05em; text-transform: uppercase; }
+.doc p { color: var(--muted); font-size: 0.95rem; }
+.tags { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 4px; }
+.tags span { font-size: 0.75rem; padding: 3px 9px; border-radius: 99px; border: 1px solid var(--line); color: var(--ink); }
+@media (max-width: 860px) { .docs { grid-template-columns: 1fr; } }
+
+/* Band: patients */
+.band { background: var(--band); color: var(--band-fg); }
+.band .wrap { padding-block: 64px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; }
+.band h3 { font-size: 1.4rem; margin-bottom: 10px; }
+.band p, .band li { color: var(--band-muted); font-size: 0.95rem; }
+.band ul { padding-left: 18px; margin: 0; display: grid; gap: 4px; }
+.band .eyebrow { color: var(--signal); margin-bottom: 8px; display: block; }
+@media (max-width: 860px) { .band .wrap { grid-template-columns: 1fr; gap: 32px; } }
+
+/* Appointment */
+.appt .wrap { display: grid; grid-template-columns: 1fr 1.2fr; gap: 56px; padding-block: 72px; }
+.appt h2 { font-size: var(--s3); margin-block: 8px 14px; }
+.info { margin-top: 28px; display: grid; gap: 18px; }
+.info dt { font-family: var(--f-mono); font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+.info dd { margin: 2px 0 0; font-size: 1rem; }
+.hours { display: grid; grid-template-columns: auto auto; gap: 2px 18px; width: max-content; font-variant-numeric: tabular-nums; }
+.copy-row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.copy-row button { font: 500 0.75rem var(--f-body); background: none; border: 1px solid var(--line); color: var(--muted); border-radius: 4px; padding: 3px 8px; cursor: pointer; }
+form { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 28px; display: grid; gap: 16px; min-width: 0; }
+.row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+label { display: grid; gap: 6px; font-size: var(--s-1); font-weight: 500; }
+input, select, textarea { font: inherit; font-size: 0.95rem; padding: 10px 12px; border: 1px solid var(--line); border-radius: 6px; background: var(--bg); color: var(--ink); width: 100%; min-width: 0; }
+input:focus, select:focus, textarea:focus { outline: 2px solid var(--accent); outline-offset: 0; border-color: transparent; }
+textarea { min-height: 96px; resize: vertical; }
+fieldset { border: 0; padding: 0; margin: 0; display: grid; gap: 8px; }
+legend { font-size: var(--s-1); font-weight: 500; margin-bottom: 6px; }
+.radios { display: flex; gap: 8px; flex-wrap: wrap; }
+.radios label { display: flex; align-items: center; gap: 6px; font-weight: 400; border: 1px solid var(--line); border-radius: 6px; padding: 7px 12px; cursor: pointer; }
+.radios input { width: auto; }
+.radios label:has(input:checked) { border-color: var(--accent); background: var(--accent-soft); }
+.fine { font-size: 0.8rem; color: var(--muted); }
+.done { background: var(--accent-soft); border-radius: 8px; padding: 16px 18px; font-size: 0.95rem; }
+.done strong { color: var(--accent); }
+@media (max-width: 860px) { .appt .wrap { grid-template-columns: 1fr; gap: 36px; padding-block: 52px; } }
+@media (max-width: 520px) { .row { grid-template-columns: 1fr; } form { padding: 20px; } }
+
+.urgent { border-left: 3px solid var(--signal); padding: 4px 0 4px 14px; font-size: 0.9rem; color: var(--muted); margin-top: 24px; }
+.urgent strong { color: var(--ink); }
+
+footer { border-top: 1px solid var(--line); }
+footer .wrap { padding-block: 28px; display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; font-size: 0.8rem; color: var(--muted); }
+</style>
+<style>html{-webkit-text-size-adjust:100%}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
+<header class="site">
+  <div class="wrap">
+    <a class="brand" href="#top" aria-label="Clein Neurology home">
+      <svg width="34" height="34" viewBox="0 0 34 34" aria-hidden="true">
+        <circle cx="17" cy="17" r="16" fill="none" stroke="var(--accent)" stroke-width="1.5"/>
+        <path d="M5 18 H11 L13 12 L16 24 L19 8 L21 18 H29" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+      </svg>
+      <span><b>Clein Neurology</b><small>Nerve &amp; Muscle Clinic</small></span>
+    </a>
+    <nav class="main" aria-label="Main">
+      <a href="#services">Services</a>
+      <a href="#conditions">Conditions</a>
+      <a href="#emg">Your EMG visit</a>
+      <a href="#physicians">Dr. Clein</a>
+      <a class="btn" href="#appointment">Request an appointment</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="wrap">
+      <div>
+        <span class="eyebrow">Neurology · EMG &amp; nerve conduction</span>
+        <h1>Numbness, tingling, weakness. <em>We find out why.</em></h1>
+        <p class="lede">Dr. Andrea Clein diagnoses and treats conditions of the nerves, muscles, brain and spine. Nerve testing is done right here in the office, so you don't have to go somewhere else for it.</p>
+        <div class="ctas">
+          <a class="btn" href="#appointment">Request an appointment</a>
+          <a class="btn ghost" href="#emg">What happens at an EMG</a>
+        </div>
+        <p class="note">Accepting new patients. A referral is required by some insurance plans.</p>
+      </div>
+      <figure class="trace" style="margin:0" aria-label="Example motor nerve conduction recording">
+        <div class="trace-head"><span>MEDIAN MOTOR · APB</span><span>Stim: wrist · 5 ms/div · 5 mV/div</span></div>
+        <svg viewBox="0 0 400 200" role="img" aria-label="Compound muscle action potential waveform with onset latency marked at 3.4 milliseconds">
+          <g class="grid">
+            <line x1="40" y1="20" x2="40" y2="170"/><line x1="112" y1="20" x2="112" y2="170"/><line x1="184" y1="20" x2="184" y2="170"/><line x1="256" y1="20" x2="256" y2="170"/><line x1="328" y1="20" x2="328" y2="170"/><line x1="392" y1="20" x2="392" y2="170"/>
+            <line x1="40" y1="20" x2="392" y2="20"/><line x1="40" y1="70" x2="392" y2="70"/><line x1="40" y1="120" x2="392" y2="120"/><line x1="40" y1="170" x2="392" y2="170"/>
+          </g>
+          <!-- baseline at y=120; 5ms per 72px; onset at 3.4ms -> x=40+49=89 -->
+          <path class="wave" d="M40 120 L60 120 L62 114 L64 126 L66 120 L89 120 C96 118 100 100 106 62 C110 38 116 34 121 48 C130 80 136 150 146 160 C154 166 162 150 174 134 C186 122 200 119 230 120 L392 120"/>
+          <line class="mark" x1="89" y1="24" x2="89" y2="170"/>
+          <text x="94" y="34" class="sig">onset 3.4 ms</text>
+          <text x="62" y="108">stim</text>
+          <text x="40" y="188">0</text><text x="105" y="188">5</text><text x="174" y="188">10</text><text x="246" y="188">15</text><text x="318" y="188">20 ms</text>
+        </svg>
+        <div class="readout">
+          <div>Distal latency<b>3.4 ms</b></div>
+          <div>Amplitude<b>9.8 mV</b></div>
+          <div>Conduction vel.<b>56 m/s</b></div>
+        </div>
+      </figure>
+    </div>
+  </section>
+
+  <section class="block" id="services">
+    <div class="wrap">
+      <div class="sec-head">
+        <div><span class="eyebrow">What we do</span><h2>Testing and care under one roof</h2></div>
+        <p class="lede">Your neurologist reviews your history, examines you, and orders only the tests that answer your question. Results are explained at the same visit whenever possible.</p>
+      </div>
+      <div class="services">
+        <div class="svc"><span class="code">EMG · NCS</span><h3>Nerve conduction &amp; EMG</h3><p>Measures how fast and how strongly signals travel through your nerves and muscles. The core test for carpal tunnel, pinched nerves and neuropathy.</p></div>
+        <div class="svc"><span class="code">EEG</span><h3>EEG brain wave testing</h3><p>Routine and extended recordings to evaluate seizures, spells, and unexplained episodes of confusion or fainting.</p></div>
+        <div class="svc"><span class="code">HA</span><h3>Headache &amp; migraine</h3><p>Personalized prevention plans, newer CGRP therapies, and Botox injections for chronic migraine.</p></div>
+        <div class="svc"><span class="code">NMJ</span><h3>Neuromuscular disease</h3><p>Diagnosis and long-term care for myasthenia gravis, ALS, myopathy and inherited nerve conditions.</p></div>
+        <div class="svc"><span class="code">MS</span><h3>Multiple sclerosis</h3><p>Disease-modifying therapy, MRI monitoring, and coordination with infusion centers.</p></div>
+        <div class="svc"><span class="code">MVMT</span><h3>Movement disorders</h3><p>Evaluation and treatment of tremor, Parkinson's disease, dystonia and restless legs.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block alt" id="conditions">
+    <div class="wrap">
+      <div class="sec-head">
+        <div><span class="eyebrow">Conditions we treat</span><h2>Common reasons patients see us</h2></div>
+        <p class="lede">Not sure if a neurologist is the right next step? Call us and a nurse can help you decide, or talk to your primary care provider about a referral.</p>
+      </div>
+      <div class="cond-cols">
+        <div><h3>Nerves &amp; spine</h3><ul><li>Carpal tunnel syndrome</li><li>Peripheral neuropathy</li><li>Sciatica &amp; radiculopathy</li><li>Ulnar nerve entrapment</li><li>Bell's palsy</li></ul></div>
+        <div><h3>Brain</h3><ul><li>Migraine &amp; headache</li><li>Epilepsy &amp; seizures</li><li>Memory loss &amp; dementia</li><li>Stroke follow-up</li><li>Concussion</li></ul></div>
+        <div><h3>Muscle &amp; movement</h3><ul><li>Myasthenia gravis</li><li>ALS</li><li>Essential tremor</li><li>Parkinson's disease</li><li>Muscle cramps &amp; weakness</li></ul></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="emg">
+    <div class="wrap">
+      <div class="sec-head">
+        <div><span class="eyebrow">Your EMG visit</span><h2>What to expect, step by step</h2></div>
+        <p class="lede">Most nerve studies take 30 to 60 minutes. You can drive yourself home and go back to normal activities right away.</p>
+      </div>
+      <div class="steps">
+        <div class="step"><div class="n">01</div><h3>Check-in &amp; history</h3><p>Your neurologist asks about your symptoms and does a brief exam to decide which nerves and muscles to test.</p></div>
+        <div class="step"><div class="n">02</div><h3>Nerve conduction</h3><p>Small sticker electrodes are placed on your skin and brief electrical pulses are applied. It feels like a quick tap or static shock.</p></div>
+        <div class="step"><div class="n">03</div><h3>Needle EMG</h3><p>A very thin sterile needle records muscle activity at rest and while you gently tighten the muscle. Discomfort is usually mild and brief.</p></div>
+        <div class="step"><div class="n">04</div><h3>Results</h3><p>The doctor reviews the findings with you before you leave, and a full report goes to your referring provider within two business days.</p></div>
+      </div>
+      <div class="prep">
+        <span><strong>Before you come:</strong> shower the morning of the test.</span>
+        <span>Skip lotions, oils and creams on arms and legs.</span>
+        <span>Wear loose sleeves.</span>
+        <span>Tell us if you take blood thinners or have a pacemaker.</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="block alt" id="physicians">
+    <div class="wrap">
+      <div class="sec-head">
+        <div><span class="eyebrow">Your neurologist</span><h2>Meet Dr. Andrea Clein</h2></div>
+        <p class="lede">You'll see the same doctor at every visit, from your first exam through testing and follow-up.</p>
+      </div>
+      <div class="docs">
+        <article class="doc"><div class="mono" aria-hidden="true">AC</div><h3>Dr. Andrea Clein</h3><span class="role">Neurologist</span><p>Dr. Clein sees patients for nerve, muscle, brain and spine conditions and performs nerve conduction and EMG testing in the office.</p><div class="tags"><span>EMG &amp; nerve testing</span><span>Neuropathy</span><span>Headache</span><span>Seizures</span></div></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="band" aria-label="Patient information">
+    <div class="wrap">
+      <div><span class="eyebrow">New patients</span><h3>Your first visit</h3><p>Arrive 15 minutes early with your photo ID, insurance card, medication list and any prior MRI or test reports. Plan for about an hour.</p></div>
+      <div><span class="eyebrow">Insurance</span><h3>Plans we accept</h3><ul><li>Medicare &amp; Medicare Advantage</li><li>Most Blue Cross Blue Shield plans</li><li>Aetna, Cigna, UnitedHealthcare</li><li>Self-pay pricing available</li></ul></div>
+      <div><span class="eyebrow">Referrals</span><h3>For referring providers</h3><p>Call us to send a referral with recent notes and the clinical question. Urgent nerve studies are scheduled within 72 hours.</p></div>
+    </div>
+  </section>
+
+  <section class="appt" id="appointment">
+    <div class="wrap">
+      <div>
+        <span class="eyebrow">Appointments</span>
+        <h2>Request a visit</h2>
+        <p class="lede">Send a request and our scheduling team will call you within one business day to confirm a time.</p>
+        <dl class="info">
+          <div><dt>Phone</dt><dd class="copy-row"><span id="phone">(602) 449-0909</span><button type="button" data-copy="phone">Copy</button></dd></div>
+          <div><dt>Address</dt><dd>1303 S Longmore, #8<br>Mesa, AZ 85202<br><span class="fine">Inside the city health offices</span></dd></div>
+          <div><dt>Hours</dt><dd class="hours"><span>Mon – Thu</span><span>8:00 am – 5:00 pm</span><span>Friday</span><span>8:00 am – 12:00 pm</span><span>Sat – Sun</span><span>Closed</span></dd></div>
+        </dl>
+        <p class="urgent"><strong>Sudden weakness, facial droop or trouble speaking?</strong> These can be signs of stroke. Call 911 right away.</p>
+      </div>
+
+      <form id="apptForm" novalidate>
+        <div class="row">
+          <label for="fname">First name<input id="fname" name="fname" autocomplete="given-name" required></label>
+          <label for="lname">Last name<input id="lname" name="lname" autocomplete="family-name" required></label>
+        </div>
+        <div class="row">
+          <label for="tel">Phone<input id="tel" name="tel" type="tel" autocomplete="tel" required></label>
+          <label for="dob">Date of birth<input id="dob" name="dob" type="date"></label>
+        </div>
+        <label for="reason">Reason for visit
+          <select id="reason" name="reason">
+            <option>Nerve conduction / EMG test</option>
+            <option>Numbness, tingling or weakness</option>
+            <option>Headache or migraine</option>
+            <option>Seizures or spells</option>
+            <option>Memory concerns</option>
+            <option>Tremor or movement</option>
+            <option>Other</option>
+          </select>
+        </label>
+        <fieldset>
+          <legend>Do you have a referral?</legend>
+          <div class="radios">
+            <label for="ref-yes"><input type="radio" id="ref-yes" name="ref" value="yes" checked> Yes</label>
+            <label for="ref-no"><input type="radio" id="ref-no" name="ref" value="no"> No</label>
+            <label for="ref-unsure"><input type="radio" id="ref-unsure" name="ref" value="unsure"> Not sure</label>
+          </div>
+        </fieldset>
+        <label for="notes">Anything we should know? <span class="fine">(optional)</span><textarea id="notes" name="notes" placeholder="Symptoms, preferred days, interpreter needs"></textarea></label>
+        <button class="btn" type="submit">Send request</button>
+        <p class="fine">Please don't include detailed medical history here. We'll go over it by phone.</p>
+        <div class="done" id="done" hidden></div>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 Clein Neurology. All rights reserved.</span>
+    <span>Privacy practices · Patient portal · Billing</span>
+  </div>
+</footer>
+
+<script>
+  document.querySelectorAll('[data-copy]').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var el = document.getElementById(b.dataset.copy);
+      var done = function () { b.textContent = 'Copied'; setTimeout(function(){ b.textContent = 'Copy'; }, 1500); };
+      try {
+        navigator.clipboard.writeText(el.textContent).then(done, function () { select(el); });
+      } catch (e) { select(el); }
+    });
+  });
+  function select(el) { var r = document.createRange(); r.selectNodeContents(el); var s = getSelection(); s.removeAllRanges(); s.addRange(r); }
+
+  var form = document.getElementById('apptForm');
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var out = document.getElementById('done');
+    var missing = ['fname','lname','tel'].filter(function (id) { return !document.getElementById(id).value.trim(); });
+    if (missing.length) {
+      out.hidden = false;
+      out.innerHTML = '<strong>Add your name and phone number</strong> so our team can call you back.';
+      document.getElementById(missing[0]).focus();
+      return;
+    }
+    out.hidden = false;
+    out.innerHTML = '<strong>Request ready, ' + document.getElementById('fname').value.replace(/[<>&]/g,'') + '.</strong> This preview form isn\'t connected to the office yet, so nothing was sent. Once it\'s linked to your scheduling system, patients will see a confirmation here.';
+  });
+</script>
+</body>
+</html>
